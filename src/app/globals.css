@@ -2,25 +2,252 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
+  --foreground: #0f172a;
+  --muted: #f8fafc;
+  --muted-fg: #64748b;
+  --border: #e2e8f0;
+  --ring: #0ea5e9;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Tier Colors */
+  --tier-t1: #3b82f6;
+  --tier-t2: #14b8a6;
+  --tier-t3: #a855f7;
+  --tier-t4: #f59e0b;
+  --tier-t5: #10b981;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Medical */
+  --medical-blue: #3b82f6;
+  --medical-light-blue: #eff6ff;
+  --medical-dark: #1e40af;
+  --medical-accent: #60a5fa;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GRADIENTS
+   ═══════════════════════════════════════════════════════════════ */
+.medical-gradient {
+  background: linear-gradient(135deg, #f3e8ff 0%, #ffffff 50%, #ddd6fe 100%);
+}
+
+.medical-blue-gradient {
+  background: linear-gradient(90deg, #7c3aed 0%, #3b82f6 100%);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+}
+
+.hero-mesh {
+  background-image:
+    radial-gradient(at 20% 80%, rgba(56, 189, 248, 0.15) 0, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(168, 85, 247, 0.12) 0, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(14, 165, 233, 0.08) 0, transparent 60%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #7c3aed, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLASS MORPHISM
+   ═══════════════════════════════════════════════════════════════ */
+.glass-effect {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
+}
+
+.tier-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+}
+
+.tier-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.15);
+}
+
+.tier-card-t1:hover { border-color: var(--tier-t1); box-shadow: 0 32px 64px -16px rgba(59, 130, 246, 0.2); }
+.tier-card-t2:hover { border-color: var(--tier-t2); box-shadow: 0 32px 64px -16px rgba(20, 184, 166, 0.2); }
+.tier-card-t3:hover { border-color: var(--tier-t3); box-shadow: 0 32px 64px -16px rgba(168, 85, 247, 0.2); }
+.tier-card-t4:hover { border-color: var(--tier-t4); box-shadow: 0 32px 64px -16px rgba(245, 158, 11, 0.2); }
+.tier-card-t5:hover { border-color: var(--tier-t5); box-shadow: 0 32px 64px -16px rgba(16, 185, 129, 0.2); }
+
+/* ═══════════════════════════════════════════════════════════════
+   MOCKUP FRAMES
+   ═══════════════════════════════════════════════════════════════ */
+.mockup-browser {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.mockup-browser .titlebar {
+  background: #1e293b;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mockup-browser .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.mockup-browser .dot-red { background: #ef4444; }
+.mockup-browser .dot-yellow { background: #f59e0b; }
+.mockup-browser .dot-green { background: #22c55e; }
+
+.mockup-browser .url-bar {
+  flex: 1;
+  margin-left: 12px;
+  background: #0f172a;
+  border-radius: 6px;
+  padding: 4px 12px;
+  color: #94a3b8;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INFINITE SCROLL (logo bar)
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes scroll-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-x {
+  animation: scroll-x 30s linear infinite;
+}
+
+.animate-scroll-x:hover {
+  animation-play-state: paused;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PULSE GLOW
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(14, 165, 233, 0); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   WORKFLOW CONNECTOR LINES
+   ═══════════════════════════════════════════════════════════════ */
+.workflow-connector {
+  position: relative;
+}
+
+.workflow-connector::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -24px;
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, #0ea5e9, #a855f7);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION SPACING
+   ═══════════════════════════════════════════════════════════════ */
+.section-padding {
+  padding: 5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 7rem 2rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CUSTOM SCROLLBAR
+   ═══════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }

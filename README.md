@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DicoFlow — Enterprise RIS/PACS Website
 
-## Getting Started
+Enterprise product showcase website for the DicoFlow Radiology Information System & Picture Archiving and Communication System.
 
-First, run the development server:
+## Tech Stack
+
+- **Next.js 15** (App Router, TypeScript, Turbopack)
+- **React 19** with Framer Motion animations
+- **Tailwind CSS 4** design system
+- **Radix UI** accessible primitives
+
+## Quick Start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Edit one file** before deployment:
 
-## Learn More
+```
+src/config/site-config.ts
+```
 
-To learn more about Next.js, take a look at the following resources:
+This controls: company name, legal entity, contact info, address, social links, admin settings, and more. All components read from this file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Sections
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| # | Section | Description |
+|---|---------|-------------|
+| 1 | Header | Sticky nav with mega-dropdown, mobile drawer |
+| 2 | Hero | Animated DICOM viewer mockup, stats bar |
+| 3 | Trusted By | Infinite scrolling partner logos |
+| 4 | Product Overview | Acquire → Process → Deliver flow |
+| 5 | Tier Showcase | Interactive T1-T5 cards with UI mockups |
+| 6 | Feature Deep Dive | 10-module tabbed interface |
+| 7 | Workflow | 14-stage lifecycle visualization |
+| 8 | DICOM Capabilities | Stats, modalities, pipeline |
+| 9 | Compliance | HIPAA, NABH, IHE badges |
+| 10 | Processing | 6 engine animated mockups |
+| 11 | Viewer | Cornerstone3D mockup |
+| 12 | Enterprise | Multi-branch, SLA, RBAC |
+| 13 | Testimonials | Customer quotes |
+| 14 | Pricing | 5-tier comparison table |
+| 15 | Enquiry Form | Contact form → admin dashboard |
+| 16 | Footer | Site-config driven |
 
-## Deploy on Vercel
+## Admin Dashboard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Access at `/admin` with your `ADMIN_API_KEY`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- View all enquiry submissions
+- Search & filter
+- Export CSV
+- API: `GET /api/admin/enquiries` (header: `x-api-key`)
+
+## Deployment
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for full guides:
+
+- **Azure App Service** — `az webapp up`
+- **AWS Elastic Beanstalk** — `eb deploy`
+- **Google Cloud Run** — `gcloud run deploy`
+- **Heroku** — `git push heroku main`
+- **Docker** — `docker-compose up -d`
+- **Vercel** — `vercel`
+
+### Docker
+
+```bash
+ADMIN_API_KEY=your-key docker-compose up -d
+```
+
+### GitHub Actions
+
+CI/CD pipeline at `.github/workflows/deploy.yml` supports Azure, AWS, GCP, and Heroku. Add your secrets to the repository settings.
+
+## Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `ADMIN_API_KEY` | Yes | Admin dashboard access key |
+| `NEXT_PUBLIC_COMPANY_NAME` | No | Override company name |
+| `NEXT_PUBLIC_SITE_URL` | No | Canonical URL |
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx          # Main page (all sections)
+│   ├── layout.tsx        # Root layout with SEO
+│   ├── admin/page.tsx    # Admin dashboard
+│   └── api/
+│       ├── health/       # Health check endpoint
+│       ├── enquiry/      # POST enquiry submissions
+│       └── admin/enquiries/ # GET admin enquiry list
+├── components/           # All page sections
+├── config/
+│   └── site-config.ts    # ← Edit this before deployment
+└── lib/
+    ├── constants.ts      # All product data
+    ├── types.ts          # TypeScript interfaces
+    └── animations.ts     # Framer Motion variants
+```
+
+## License
+
+Proprietary. All rights reserved.
