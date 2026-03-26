@@ -24,12 +24,12 @@ export const siteConfig = {
 
   // ─── Contact Information ───────────────────────────────────────
   contact: {
-    primaryName: process.env.NEXT_PUBLIC_CONTACT_NAME || 'Sales Team',
-    primaryEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'sales@dicoflow.com',
-    supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || 'support@dicoflow.com',
-    primaryPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE || '+91 80 4567 8900',
-    secondaryPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE_2 || '+91 80 4567 8901',
-    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '+91 98765 43210',
+    primaryName: 'Viswaranjan Sahoo',
+    primaryEmail: 'support@techmasys.in',
+    supportEmail: 'support@techmasys.in',
+    primaryPhone: '7008918902',
+    secondaryPhone: '',
+    whatsapp: '',
   },
 
   // ─── Address ───────────────────────────────────────────────────
